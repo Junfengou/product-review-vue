@@ -11,11 +11,54 @@
 </template>
 
 <script>
-/*   import Cookies from 'js-cookie'
-  import * as firebase from 'firebase/app'
-  import 'firebase/auth' */
-
-
+import Cookies from 'js-cookie'
+import * as firebase from 'firebase/app'
+import 'firebase/auth'
+export default {
+  data() {
+    return {
+      loggedIn: false
+    }
+  },
+  mounted() {
+    // similar to useEffect, it will handle initial rendering
+    this.setupFirebase()
+  },
+  asyncData() {},
+  methods: {
+    setupFirebase() {
+      // Call back gets fire whenever a user gets logged in or logged out
+      firebase.auth().onAuthStateChanged(user => {
+        if (user) {
+          // User is signed in.
+          console.log('signed in')
+          // obtain the token from firebase for this particular user and set it to cookie under the name "access_token"
+          firebase
+            .auth()
+            .currentUser.getIdToken(true)
+            .then(token => Cookies.set('access_token', token))
+          // state for conditionally render
+          this.loggedIn = true
+        } else {
+          Cookies.remove('access_token')
+          // if (Cookies.set('access_token', 'blah')) {
+          // }
+          // No user is signed in.
+          this.loggedIn = false
+          console.log('signed out', this.loggedIn)
+        }
+      })
+    },
+    logout() {
+      firebase
+        .auth()
+        .signOut()
+        .then(() => {
+          this.$router.replace({ name: 'login' })
+        })
+    }
+  }
+}
 </script>
 
 <style>
