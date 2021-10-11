@@ -1,5 +1,5 @@
 // Import the functions you need from the SDKs you need
-import * as firebase from 'firebase/app'
+import * as firebase from 'firebase'
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -15,10 +15,10 @@ const firebaseConfig = {
 
 // Initialize Firebase
 // Need this additional info for nuxt
-let app = null
-if (!firebase.apps.length) {
-  app = firebase.initializeApp(firebaseConfig)
-}
+// let app = null
+// !firebase.apps.length ? app = firebase.initializeApp(firebaseConfig) : null;
 
-export default firebase
+const app = firebase.initializeApp(firebaseConfig)
+export const db = app.firestore();
+export default firebase;
 
