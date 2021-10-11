@@ -1,17 +1,17 @@
 <template>
-  <div class="login">
-    <h3>Login</h3>
-    <form @submit.prevent="pressed">
-      <div class="login">
-        <input type="text" placeholder="login" v-model="email" />
-      </div>
-      <div class="password">
-        <input type="password" placeholder="password" v-model="password" />
-      </div>
-      <button>Login</button>
-    </form>
-    <div class="error" v-if="error">{{error.message}}</div>
-  </div>
+    <div class="signup">
+        <h3>Sign up</h3>
+        <form @submit.prevent="pressed">
+            <div class="signup">
+                <input type="text" placeholder="signup" v-model="email"/>
+            </div>
+            <div class="password">
+                <input type="password" placeholder="password" v-model="password" />
+            </div>
+            <button>Signup</button>
+        </form>
+        <div class="error" v-if="error">{{error.message}}</div>
+    </div>
 </template>
 
 <script>
@@ -27,22 +27,17 @@ import 'firebase/auth'
         },
         methods: {
             pressed() {
-                firebase
-                .auth()
-                .signInWithEmailAndPassword(this.email, this.password)
-                .then((data) => {
-                    console.log(data)
-                    this.$router.replace({ name: 'secret' }) // route to secret page after login
-                }).catch(error => {
-                    this.error = error
-                })
+                firebase.auth()
+                .createUserWithEmailAndPassword(this.email, this.password)
+                .then((res) => console.log(res))
+                .catch((err) => console.log(err))
             }
         }
     }
 </script>
 
 <style lang="scss" scoped>
-    .login {
+    .signup {
         margin-top: 50px;
         display: flex;
         width: 100%;
@@ -51,7 +46,7 @@ import 'firebase/auth'
         flex-direction: column;
     }
     div {
-        color: inherit;
+        color: inherit
     }
     form {
         display: flex;
@@ -70,6 +65,7 @@ import 'firebase/auth'
         height: 75px;
         font-size: 100%;
     }
+
     .error {
         color: red;
     }
