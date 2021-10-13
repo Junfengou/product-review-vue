@@ -1,11 +1,12 @@
 <template>
   <div class="main">
-    <div class="main-links">
+    <!-- <div class="main-links">
       <nuxt-link to="/">Home Page</nuxt-link>|
       <div @click="logout" v-if="loggedIn" class="logout-link">Logout</div>
       <nuxt-link v-else to="/login">Login Page</nuxt-link>|
       <nuxt-link to="/secret">Secret Page</nuxt-link>
-    </div>
+    </div> -->
+    <Navbar />
     <nuxt />
   </div>
 </template>
@@ -68,7 +69,7 @@ export default {
   color: #551a8b;
 }
 .main {
-  margin: 20px;
+  /* margin: 20px; */
   display: flex;
   align-items: center;
   justify-content: center;

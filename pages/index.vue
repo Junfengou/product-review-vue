@@ -1,5 +1,5 @@
 <template>
-  <div class="row">
+  <!-- <div class="row">
         <div class="col-md-12">
             <table class="table table-striped">
                 <thead>
@@ -18,7 +18,9 @@
                 </tbody>
             </table>
         </div>
-    </div>
+        <button v-on:click="clickMe">click me</button>
+    </div> -->
+    <Home />
 </template>
 
 
@@ -45,19 +47,17 @@ export default {
     })
   },
   methods: {
+    // Can condictionally check which item the user is currently viewing and pass that id into this loop to bring out the right comments
     clickMe() {
-      const data = db.collection("Products").onSnapshot((snapshotChange) => {
-      this.products = []
-      snapshotChange.forEach((item) => {
-        this.products.push({
-          key: item.id,
-          name: item.data().name,
-          description: item.data().description,
-          photo: item.data().picture_link,
+      const ref = db.collection("Reviews").onSnapshot((snapshotChange) => {
+        snapshotChange.forEach((item) => {
+          if(item.data().productId == '123') {
+            console.log(item.data());
+          }
         })
       })
-    })
-      console.log(db.collection('products'));
+      db.collection().add()
+      /* console.log(ref); */
     }
   }
 }
