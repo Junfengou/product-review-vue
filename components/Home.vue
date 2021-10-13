@@ -8,10 +8,11 @@
 
         <div class="product-wrapper">
             <div class="product-container" v-for="product in products" :key="product.productId">
-                <div><b-img class="product-image" src="@/assets/nature.jpg" fluid alt="Responsive image"></b-img></div>
-                <div>{{product.productName}}</div>
-                <div>{{product.productDescription}}</div>
-                <div>${{product.productPrice}}</div>
+                <b-img class="product-image" src="@/assets/nature.jpg" fluid alt="Responsive image"></b-img>
+                <!--<b-img src="https://picsum.photos/300/150/?image=41" fluid alt="Fluid image"></b-img>  -->
+                <h5>{{product.productName}}</h5>
+                <p>{{product.productDescription}}</p>
+                <p>${{product.productPrice}}</p>
             </div>
         </div>
 
@@ -80,11 +81,10 @@
         margin-bottom: 2rem;
         justify-content: center;
         align-items: center;
-        font-size: 12px;
+        font-size: 1.2rem;
     }
 
     .product-wrapper {
-        border: solid 2px red;
         width: 100%;
         max-width: 1200px;
        /*  display: flex; */
@@ -93,25 +93,16 @@
         grid-template-columns: repeat(3, 1fr);
         justify-items: center; // horizontal
         align-items: center; // vertical
-
-        @media (max-width: 960px) {
-            grid-template-rows: repeat(2, 1fr);
-            grid-template-columns: repeat(2, 1fr);
-        }
-
-        @media (max-width: 640px) {
-            grid-template-rows: repeat(3, 1fr);
-            grid-template-columns: repeat(1, 1fr);
-        }
     }
 
     .product-container {
+        /* Come back here and add some box shadow behind these boxes */
         width: 18rem;
         height: 23rem;
         border: solid 2px blue;
         margin-bottom: 5rem;
         display: flex;
-        justify-items: space-between;
+        justify-content: space-between;
         align-items: center;
         flex-direction: column;
 
@@ -119,6 +110,26 @@
 
     .product-image {
         height: 12rem;
+    }
+
+    @media (max-width: 960px) {
+        .product-wrapper {
+            grid-template-rows: repeat(2, 1fr);
+            grid-template-columns: repeat(2, 1fr);
+        }
+        h3, p {
+            font-size: 1.3rem;
+        }
+    }
+
+    @media (max-width: 640px) {
+        .product-wrapper {
+            grid-template-rows: repeat(3, 1fr);
+            grid-template-columns: repeat(1, 1fr);
+        }
+        h3, p {
+            font-size: 1.2rem;
+        }
     }
 </style>
 
