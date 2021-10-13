@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <div class="wrapper" />
+    <div class="wrapper">
+        <div class="banner" />
         <article>
             <h3>Lorem ipsum dolor sit amet, consectetur</h3>
             <p>Lorem ipsum dolor sit amet, consectet</p>
@@ -56,6 +56,13 @@
 
 <style lang="scss" scoped>
     .wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .banner {
         --lightblack: rgb(32, 33, 38);
         height: 40rem;
         width: 100vw;
@@ -63,6 +70,7 @@
         clip-path: polygon(0 0, 100% 0, 100% 72%, 0% 100%);
         background: var(--lightblack);
         background-image: url("../assets/nature.jpg");
+        background-repeat: no-repeat
     }
 
     article {
@@ -76,23 +84,37 @@
     }
 
     .product-wrapper {
-        /* border: solid 2px red; */
+        border: solid 2px red;
         width: 100%;
-        height: 35rem;
-        display: flex;
-        justify-content: space-evenly;
-        align-items: center;
+        max-width: 1200px;
+       /*  display: flex; */
+        display: grid;
+        grid-template-rows: 1fr;
+        grid-template-columns: repeat(3, 1fr);
+        justify-items: center; // horizontal
+        align-items: center; // vertical
+
+        @media (max-width: 960px) {
+            grid-template-rows: repeat(2, 1fr);
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @media (max-width: 640px) {
+            grid-template-rows: repeat(3, 1fr);
+            grid-template-columns: repeat(1, 1fr);
+        }
     }
 
     .product-container {
         width: 18rem;
         height: 23rem;
-        /* border: solid 2px blue; */
+        border: solid 2px blue;
+        margin-bottom: 5rem;
         display: flex;
-        justify-content: space-between;
+        justify-items: space-between;
         align-items: center;
         flex-direction: column;
-        
+
     }
 
     .product-image {
