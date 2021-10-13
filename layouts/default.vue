@@ -91,6 +91,8 @@ html {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 *,
 *:before,
