@@ -16,8 +16,9 @@
             </div>
         </div>
 
-        <div>
-
+        <div class="special-wrapper">
+            <div>photo goes here</div>
+            <div>text here</div>
         </div>
     </div>
 </template>
@@ -110,6 +111,15 @@
 
     .product-image {
         height: 12rem;
+    }
+
+    .special-wrapper {
+        border: solid 2px red;
+        width: 1000px;
+        max-width: 1200px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     @media (max-width: 960px) {
